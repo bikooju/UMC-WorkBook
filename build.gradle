@@ -2,7 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.3.4'
 	id 'io.spring.dependency-management' version '1.1.6'
-	id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
+//	id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
 }
 
 group = 'umc'
@@ -40,37 +40,30 @@ dependencies {
 	annotationProcessor "jakarta.persistence:jakarta.persistence-api"
 }
 
-sourceSets {
-	main {
-		java {
-			srcDirs = ['src/main/java', 'src/main/resources']
-		}
-	}
-}
 
 
 tasks.named('test') {
 	useJUnitPlatform()
 }
 
-// Querydsl 설정부
-def generated = 'src/main/generated'
-
-querydsl {
-	jpa = true
-	querydslSourcesDir = generated
-}
-sourceSets {
-	main.java.srcDir generated
-}
-
-compileQuerydsl{
-	options.annotationProcessorPath = configurations.querydsl
-}
-
-configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
-	querydsl.extendsFrom compileClasspath
-}
+//// Querydsl 설정부
+//def generated = 'src/main/generated'
+//
+//querydsl {
+//	jpa = true
+//	querydslSourcesDir = generated
+//}
+//sourceSets {
+//	main.java.srcDir generated
+//}
+//
+//compileQuerydsl{
+//	options.annotationProcessorPath = configurations.querydsl
+//}
+//
+//configurations {
+//	compileOnly {
+//		extendsFrom annotationProcessor
+//	}
+//	querydsl.extendsFrom compileClasspath
+//}
