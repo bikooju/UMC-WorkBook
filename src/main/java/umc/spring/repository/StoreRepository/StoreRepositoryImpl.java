@@ -31,5 +31,6 @@ public class  StoreRepositoryImpl implements StoreRepositoryCustom {
                 .selectFrom(store)
                 .where(predicate)
                 .fetch();
+
     }
 }
