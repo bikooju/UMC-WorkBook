@@ -43,7 +43,6 @@ public class ReviewService {
                 .score(requestDTO.getScore())
                 .member(member)
                 .store(store)
-                .createdAt(LocalDateTime.now())
                 .build();
 
         //Review 엔티티를 데이터베이스에 저장하기 위해서 (영속화)

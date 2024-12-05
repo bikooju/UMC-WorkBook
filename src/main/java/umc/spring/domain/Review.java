@@ -21,6 +21,8 @@ public class Review extends BaseEntity {
 
     private String content;
 
+    private String body;
+
     private Float score;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -33,4 +35,5 @@ public class Review extends BaseEntity {
 
     @Column(nullable = false)
     private LocalDateTime createdAt;
+
 }
