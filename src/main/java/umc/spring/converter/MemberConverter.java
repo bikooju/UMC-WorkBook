@@ -17,6 +17,10 @@ public class MemberConverter {
                 .build();
     }
 
+    //DTO -> Entity
+    //사용자가 입력한 데이터가 저장되어야 할 때 (예: 회원가입 요청).
+    //DTO는 클라이언트에서 온 데이터만 담고 있기 때문에,
+    //이를 엔티티로 변환하여 데이터베이스에 저장 가능하게 만들어야 함.
     public static Member toMember(MemberRequestDTO.JoinDto request) {
         Gender gender = null;
 
@@ -33,6 +37,9 @@ public class MemberConverter {
         }
 
         return Member.builder()
+                .email(request.getEmail())
+                .password(request.getPassword())
+                .role(request.getRole())
                 .address(request.getAddress())
                 .specAddress(request.getSpecAddress())
                 .gender(gender)

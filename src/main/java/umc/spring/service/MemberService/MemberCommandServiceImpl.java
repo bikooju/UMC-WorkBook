@@ -1,6 +1,7 @@
 package umc.spring.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import umc.spring.apiPayload.code.status.ErrorStatus;
@@ -23,11 +24,13 @@ import java.util.stream.Stream;
 public class MemberCommandServiceImpl implements MemberCommandService {
     private final MemberRepository memberRepository;
     private final FoodCategoryRepository foodCategoryRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     @Transactional //자동으로 트랜잭션을 시작하고 성공적으로 완료하면 커밋하거나 또는 실패할 경우 롤백할 수 있다
     public Member joinMember(MemberRequestDTO.JoinDto request) {
         Member newMember = MemberConverter.toMember(request);
+        newMember.encodePassWord(passwordEncoder.encode(request.getPassword())); //추가
         List<FoodCategory> foodCategoryList = request.getPreferCategory().stream()
                 .map(category -> {
                     return foodCategoryRepository.findById(category).orElseThrow(() -> new FoodCategoryHandler(ErrorStatus.FOOD_CATEGORY_NOT_FOUND));

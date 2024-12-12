@@ -12,7 +12,6 @@ import umc.spring.repository.MemberRepository;
 import umc.spring.repository.ReviewRepository;
 import umc.spring.repository.StoreRepository.StoreRepository;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,7 +43,6 @@ public class StoreQueryServiceImpl implements StoreQueryService{
                 .score(score)
                 .store(store)
                 .member(member)
-                .createdAt(LocalDateTime.now()) // 수동으로 createdAt 설정 (임시 방법)
                 .build();
 
         // 리뷰 저장
